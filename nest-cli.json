@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/gateway-app/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/gateway-app/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/gateway-app",
+  "projects": {
+    "gateway-app": {
+      "type": "application",
+      "root": "apps/gateway-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/gateway-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gateway-app/tsconfig.app.json"
+      }
+    },
+    "comments-service": {
+      "type": "application",
+      "root": "apps/comments-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/comments-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/comments-service/tsconfig.app.json"
+      }
+    }
+  }
+}

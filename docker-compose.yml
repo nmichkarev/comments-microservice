@@ -1,0 +1,12 @@
+services:
+  db:
+    container_name: app-db
+    image: postgres
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./docker-postgres-init:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=comments_db
+      - POSTGRES_PASSWORD=comments_db
+      - POSTGRES_MULTIPLE_DATABASES=microservices_comments,microservices_gateway
