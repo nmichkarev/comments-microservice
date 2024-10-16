@@ -20,7 +20,7 @@ $ npm run start-service
 
 ### Run api-gateway
 ```bash
-$ npm run start-service
+$ npm run start
 ```
 
 Api docs are available on [http://localhost:3000](http://localhost:3000)
