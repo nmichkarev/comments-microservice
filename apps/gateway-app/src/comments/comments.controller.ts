@@ -14,7 +14,7 @@ import {
 import { ClientProxy } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import { AuthGuard } from '../auth/auth.guard';
-import { ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 // TODO: handle rpc exceptions
 @ApiTags('Comments')
@@ -23,6 +23,7 @@ import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 export class CommentsController {
   constructor(@Inject('COMMENTS_SERVICE') private client: ClientProxy) {}
 
+  @ApiOperation({ summary: "get list of user's comments" })
   @UseGuards(AuthGuard)
   @Get()
   getComments(@Request() req): Observable<Comment[]> {
@@ -30,6 +31,7 @@ export class CommentsController {
     return this.client.send<Comment[]>(pattern, req.user.id);
   }
 
+  @ApiOperation({ summary: 'create comment' })
   @UseGuards(AuthGuard)
   @Post()
   createComment(
@@ -44,6 +46,7 @@ export class CommentsController {
     });
   }
 
+  @ApiOperation({ summary: 'update comment' })
   @UseGuards(AuthGuard)
   @Put(':id')
   updateComment(
@@ -59,6 +62,7 @@ export class CommentsController {
     });
   }
 
+  @ApiOperation({ summary: 'delete comment' })
   @UseGuards(AuthGuard)
   @Delete(':id')
   deleteComment(@Param() params: any): Observable<void> {
